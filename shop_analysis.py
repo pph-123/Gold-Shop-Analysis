@@ -28,6 +28,8 @@ def adjusted_grams(row):
         return round(row['Gram'] * (16 / 17) / 16.606, 10)
     elif row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်ပြန်သိမ်းစာရင်း':
         return round(row['Gram'] * (16 / 17) / 17, 10)
+    elif row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်ပြန်သိမ်းစာရင်း':
+        return round(row['Gram'] * (16 / 17) / 17, 10)
     else:
         return None
     return None
