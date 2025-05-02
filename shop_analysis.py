@@ -23,6 +23,7 @@ def to_grams(row):
 
 # ➕ New: Apply conditional transformation
 def adjusted_grams(row):
+    print('row is', row)
     if row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
         return round(row['Gram'] * (16 / 17) / 16.606, 10)
     elif row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်ပြန်သိမ်းစာရင်း':
@@ -99,8 +100,8 @@ with tab2:
     st.write(Total_Weight)
     
     st.title("Daily calculate weight by Gold quality and category")
-    Total_qcWeight = filter_df.groupby(['Date','Quality','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
-    Total_qcWeight.columns = ['Date','Quality','Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
+    Total_qcWeight = filter_df.groupby(['Date','Quality','Item', 'Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
+    Total_qcWeight.columns = ['Date','Quality','Item', 'Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
     Total_qcWeight['Gram'] = Total_qcWeight.apply(to_grams, axis=1)
     Total_qcWeight['Adjusted_Gram'] = Total_qcWeight.apply(adjusted_grams, axis=1)
     st.write(Total_qcWeight)
@@ -157,11 +158,11 @@ with tab3:
     st.write(Total_MWeight)
     
     st.title("Monthly calculate weight by Gold quality and category")
-    Total_qcMWeight = df.groupby(['Year','Month','Quality','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
-    Total_qcMWeight.columns = ['Year','Month','Quality','Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
+    Total_qcMWeight = df.groupby(['Year','Month','Quality','Item','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
+    Total_qcMWeight.columns = ['Year','Month','Quality', 'Item','Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
     Total_qcMWeight['Gram'] = Total_qcMWeight.apply(to_grams, axis=1)
-    #Total_qcMWeight['Adjusted_Gram'] = Total_qcMWeight.apply(adjusted_grams, axis=1)
-    #st.write(Total_qcMWeight)
+    Total_qcMWeight['Adjusted_Gram'] = Total_qcMWeight.apply(adjusted_grams, axis=1)
+    st.write(Total_qcMWeight)
 
 with tab4:
     st.header("Yearly Data Analysis")
@@ -184,8 +185,8 @@ with tab4:
     Total_YWeight['tola'] = Total_YWeight['tola'].map('{:.10f}'.format) 
     st.write(Total_YWeight)
     st.title("Yearly calculate weight by Gold quality and category")
-    Total_qcYWeight = df.groupby(['Year','Month','Quality','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
-    Total_qcYWeight.columns = ['Year','Month','Quality','Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
+    Total_qcYWeight = df.groupby(['Year','Month','Quality','Item','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
+    Total_qcYWeight.columns = ['Year','Month','Quality', 'Item', 'Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
     Total_qcYWeight['Gram'] = Total_qcYWeight.apply(to_grams, axis=1)
     Total_qcYWeight['Adjusted_Gram'] = Total_qcYWeight.apply(adjusted_grams, axis=1)
     st.write(Total_qcYWeight)
