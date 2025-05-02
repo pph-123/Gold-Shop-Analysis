@@ -23,8 +23,12 @@ def to_grams(row):
 
 # ➕ New: Apply conditional transformation
 def adjusted_grams(row):
-    if row['Quality'] == '15ပဲရည် ရွှေထည်' and row['Item'] == 'ရွှေထည်အရောင်းစာရင်း':
+    if row['Quality'] == '15ပဲရည်' and row['Item'] == 'ရွှေထည်အရောင်းစာရင်း':
         return round(row['Gram'] * (16 / 17) / 16.606, 10)
+    elif row['Quality'] == 'ရွှေဒင်္ဂါးရေမှီ' and row['Item'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 17.5) / 16.606, 10)
+    else: 
+        return None
     return None
 
 with tab1:
