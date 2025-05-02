@@ -160,8 +160,8 @@ with tab3:
     Total_qcMWeight = df.groupby(['Year','Month','Quality','Category']).agg({'ကျပ်': ['sum','mean'], 'ပဲ' : ['sum', 'mean'],'ရွေး' : ['sum', 'mean']}).reset_index()
     Total_qcMWeight.columns = ['Year','Month','Quality','Category','kyat_sum', 'kyat_mean', 'pel_sum','pel_mean','Yway_sum','Yway_mean']
     Total_qcMWeight['Gram'] = Total_qcMWeight.apply(to_grams, axis=1)
-    Total_qcMWeight['Adjusted_Gram'] = Total_qcMWeight.apply(adjusted_grams, axis=1)
-    st.write(Total_qcMWeight)
+    #Total_qcMWeight['Adjusted_Gram'] = Total_qcMWeight.apply(adjusted_grams, axis=1)
+    #st.write(Total_qcMWeight)
 
 with tab4:
     st.header("Yearly Data Analysis")
