@@ -25,11 +25,28 @@ def to_grams(row):
 def adjusted_grams(row):
     print('row is', row)
     if row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 16) / 16.606, 10)
+            
+    elif row['Quality'] == '15' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
         return round(row['Gram'] * (16 / 17) / 16.606, 10)
-    elif row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်ပြန်သိမ်းစာရင်း':
-        return round(row['Gram'] * (16 / 17) / 17, 10)
-    elif row['Quality'] == 'Academy' and row['Category'] == 'ရွှေထည်ပြန်သိမ်းစာရင်း':
-        return round(row['Gram'] * (16 / 17) / 17, 10)
+            
+    elif row['Quality'] == 'ရွှေဒင်္ဂါးရေမှီ' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 17.5) / 16.606, 10)
+            
+    elif row['Quality'] == 'ရေမှီ' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 18) / 16.606, 10)
+            
+    elif row['Quality'] == 'ရေမှီ ၁၈းစပ်' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 18.25) / 16.606, 10)
+            
+    elif row['Quality'] == '၁၃ပဲရည်' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 19) / 16.606, 10)
+            
+    elif row['Quality'] == '18k' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (12 / 16) / 16.606, 10)
+            
+    elif row['Quality'] == 'စိန်ထည်' and row['Category'] == 'ရွှေထည်အရောင်းစာရင်း':
+        return round(row['Gram'] * (16 / 19) / 16.606, 10)
     else:
         return None
     return None
